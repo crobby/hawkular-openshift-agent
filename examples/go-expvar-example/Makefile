@@ -17,7 +17,7 @@ DOCKER_NAME = hawkular/hawkular-openshift-agent-example-go-expvar
 DOCKER_VERSION ?= latest
 DOCKER_TAG = ${DOCKER_NAME}:${DOCKER_VERSION}
 
-HAWKULAR_OPENSHIFT_AGENT_EXAMPLE_GO_EXPVAR_HOSTNAME ?= "hawkular-openshift-agent-example-go-expvar-$(shell oc project -q).$(shell oc version | grep 'Server ' | awk '{print $$2;}' | egrep -o '([0-9]{1,3}[.]){3}[0-9]{1,3}').xip.io"
+HAWKULAR_OPENSHIFT_AGENT_EXAMPLE_GO_EXPVAR_HOSTNAME ?= "hawkular-openshift-agent-example-go-expvar-$(shell oc project -q).$(shell oc version | grep 'Server ' | awk '{print $$2;}' | egrep -o '([0-9]{1,3}[.]){3}[0-9]{1,3}').nip.io"
 
 GOPATH := ${GOPATH}/src/github.com/hawkular/hawkular-openshift-agent/examples/go-expvar-example
 

@@ -88,7 +88,7 @@ if [ "$1" = "up" ];then
   ${OPENSHIFT_EXE_OC} adm policy add-cluster-role-to-user cluster-reader system:serviceaccount:openshift-infra:heapster -n openshift-infra
 
   # Metrics
-  ${OPENSHIFT_EXE_OC} process -f metrics.yaml ${OPENSHIFT_IMAGE_VERSION_ARG} -p HAWKULAR_METRICS_HOSTNAME=metrics-openshift-infra.${OPENSHIFT_IP_ADDRESS}.xip.io -p USE_PERSISTENT_STORAGE=false | ${OPENSHIFT_EXE_OC} create -n openshift-infra -f -
+  ${OPENSHIFT_EXE_OC} process -f metrics.yaml ${OPENSHIFT_IMAGE_VERSION_ARG} -p HAWKULAR_METRICS_HOSTNAME=metrics-openshift-infra.${OPENSHIFT_IP_ADDRESS}.nip.io -p USE_PERSISTENT_STORAGE=false | ${OPENSHIFT_EXE_OC} create -n openshift-infra -f -
 
 elif [ "$1" = "down" ];then
 
