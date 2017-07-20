@@ -63,8 +63,8 @@ docker-examples:
 openshift-deploy: openshift-undeploy
 	@echo Deploying Components to OpenShift
 	oc create -f deploy/openshift/hawkular-openshift-agent-configmap.yaml -n ${HAWKULAR_OPENSHIFT_AGENT_NAMESPACE}
-	oc process -f deploy/openshift/hawkular-openshift-agent.yaml -v IMAGE_VERSION=${DOCKER_VERSION} | oc create -n ${HAWKULAR_OPENSHIFT_AGENT_NAMESPACE} -f -
-	oc process -f deploy/openshift/hawkular-openshift-agent-route.yaml -v HAWKULAR_OPENSHIFT_AGENT_HOSTNAME=${HAWKULAR_OPENSHIFT_AGENT_HOSTNAME} | oc create -n ${HAWKULAR_OPENSHIFT_AGENT_NAMESPACE} -f -
+	oc process -f deploy/openshift/hawkular-openshift-agent.yaml -p IMAGE_VERSION=${DOCKER_VERSION} | oc create -n ${HAWKULAR_OPENSHIFT_AGENT_NAMESPACE} -f -
+	oc process -f deploy/openshift/hawkular-openshift-agent-route.yaml -p HAWKULAR_OPENSHIFT_AGENT_HOSTNAME=${HAWKULAR_OPENSHIFT_AGENT_HOSTNAME} | oc create -n ${HAWKULAR_OPENSHIFT_AGENT_NAMESPACE} -f -
 	oc adm policy add-cluster-role-to-user hawkular-openshift-agent system:serviceaccount:${HAWKULAR_OPENSHIFT_AGENT_NAMESPACE}:hawkular-openshift-agent
 
 openshift-undeploy:
