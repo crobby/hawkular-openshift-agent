@@ -22,7 +22,7 @@ DOCKER_TAG = ${DOCKER_NAME}:${DOCKER_VERSION}
 
 VERBOSE_MODE ?= 4
 HAWKULAR_OPENSHIFT_AGENT_NAMESPACE ?= default
-HAWKULAR_OPENSHIFT_AGENT_HOSTNAME ?= "hawkular-openshift-agent-${HAWKULAR_OPENSHIFT_AGENT_NAMESPACE}.$(shell oc version --insecure-skip-tls-verify | grep 'Server ' | awk '{print $$2;}' | awk -F/ '{print $$3;}' | awk -F: '{print $$1;}' ).xip.io"
+HAWKULAR_OPENSHIFT_AGENT_HOSTNAME ?= "hawkular-openshift-agent-${HAWKULAR_OPENSHIFT_AGENT_NAMESPACE}.$(shell oc version --insecure-skip-tls-verify | grep 'Server ' | awk '{print $$2;}' | awk -F/ '{print $$3;}' | awk -F: '{print $$1;}' ).nip.io"
 
 GO_BUILD_ENVVARS = \
 	GOOS=linux \
@@ -74,7 +74,7 @@ openshift-undeploy:
 
 openshift-status:
 	@echo Obtaining Status from the Agent
-	@curl -k -H "Authorization: Basic $(shell echo -n `oc get secret hawkular-openshift-agent-status -n ${HAWKULAR_OPENSHIFT_AGENT_NAMESPACE} --template='{{.data.username}}' | base64 --decode`:`oc get secret hawkular-openshift-agent-status -n ${HAWKULAR_OPENSHIFT_AGENT_NAMESPACE} --template='{{.data.password}}' | base64 --decode` | base64)" http://hawkular-openshift-agent-${HAWKULAR_OPENSHIFT_AGENT_NAMESPACE}.$(shell oc version | grep 'Server ' | awk '{print $$2;}' | egrep -o '([0-9]{1,3}[.]){3}[0-9]{1,3}').xip.io/status
+	@curl -k -H "Authorization: Basic $(shell echo -n `oc get secret hawkular-openshift-agent-status -n ${HAWKULAR_OPENSHIFT_AGENT_NAMESPACE} --template='{{.data.username}}' | base64 --decode`:`oc get secret hawkular-openshift-agent-status -n ${HAWKULAR_OPENSHIFT_AGENT_NAMESPACE} --template='{{.data.password}}' | base64 --decode` | base64)" http://hawkular-openshift-agent-${HAWKULAR_OPENSHIFT_AGENT_NAMESPACE}.$(shell oc version | grep 'Server ' | awk '{print $$2;}' | egrep -o '([0-9]{1,3}[.]){3}[0-9]{1,3}').nip.io/status
 
 install:
 	@echo Installing...
