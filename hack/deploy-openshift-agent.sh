@@ -52,10 +52,10 @@ mkdir -p /tmp/hawkular-openshift-agent-deploy
 cd /tmp/hawkular-openshift-agent-deploy
 rm -rf /tmp/hawkular-openshift-agent-deploy/*
 
-wget https://raw.githubusercontent.com/hawkular/hawkular-openshift-agent/${_GIT_REV}/Makefile || exit 1
-wget -P deploy/openshift https://raw.githubusercontent.com/hawkular/hawkular-openshift-agent/${_GIT_REV}/deploy/openshift/hawkular-openshift-agent-configmap.yaml || exit 1
-wget -P deploy/openshift https://raw.githubusercontent.com/hawkular/hawkular-openshift-agent/${_GIT_REV}/deploy/openshift/hawkular-openshift-agent.yaml || exit 1
-wget -P deploy/openshift https://raw.githubusercontent.com/hawkular/hawkular-openshift-agent/${_GIT_REV}/deploy/openshift/hawkular-openshift-agent-route.yaml || exit 1
+wget https://raw.githubusercontent.com/crobby/hawkular-openshift-agent/${_GIT_REV}/Makefile || exit 1
+wget -P deploy/openshift https://raw.githubusercontent.com/crobby/hawkular-openshift-agent/${_GIT_REV}/deploy/openshift/hawkular-openshift-agent-configmap.yaml || exit 1
+wget -P deploy/openshift https://raw.githubusercontent.com/crobby/hawkular-openshift-agent/${_GIT_REV}/deploy/openshift/hawkular-openshift-agent.yaml || exit 1
+wget -P deploy/openshift https://raw.githubusercontent.com/crobby/hawkular-openshift-agent/${_GIT_REV}/deploy/openshift/hawkular-openshift-agent-route.yaml || exit 1
 
 # If the user is not yet logged in, log in now
 oc whoami > /dev/null 2>&1
